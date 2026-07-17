@@ -1,0 +1,57 @@
+import streamlit as st
+import os
+from moviepy import VideoFileClip
+
+VIDEO_FOLDER = "uploads/videos"
+CLIP_FOLDER = "uploads/clips"
+
+os.makedirs(CLIP_FOLDER, exist_ok=True)
+
+
+def scene_selection():
+
+    st.header("✂ Scene Selection")
+
+    videos = [
+        f for f in os.listdir(VIDEO_FOLDER)
+        if f.endswith((".mp4", ".mov", ".avi", ".mkv", ".webm", ".mpeg"))
+    ]
+
+    if not videos:
+        st.warning("No uploaded videos found.")
+        return
+
+    selected_video = st.selectbox(
+        "Select Video",
+        videos
+    )
+
+    video_path = os.path.join(VIDEO_FOLDER, selected_video)
+
+    st.video(video_path)
+
+    clip = VideoFileClip(video_path)
+
+    duration = clip.duration
+
+    st.write(f"Duration : {round(duration,2)} seconds")
+
+    start_time = st.slider(
+        "Start Time",
+        0.0,
+        float(duration),
+        0.0
+    )
+
+    end_time = st.slider(
+        "End Time",
+        0.0,
+        float(duration),
+        float(duration)
+    )
+
+    st.write("Selected Clip")
+
+    st.write(
+        f"{round(start_time,2)} sec → {round(end_time,2)} sec"
+    )
