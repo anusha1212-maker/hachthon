@@ -1,0 +1,35 @@
+import streamlit as st
+import os
+
+UPLOAD_FOLDER = "uploads/videos"
+
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+def video_upload():
+
+    st.header("📹 Video Upload")
+
+    uploaded_files = st.file_uploader(
+        "Upload Movie Clips",
+        type=["mp4", "mov", "avi", "mkv", "webm", "mpeg"],
+        accept_multiple_files=True
+    )
+
+    if uploaded_files:
+
+        st.success(f"{len(uploaded_files)} video(s) uploaded successfully!")
+
+        for video in uploaded_files:
+
+            save_path = os.path.join(UPLOAD_FOLDER, video.name)
+
+            with open(save_path, "wb") as f:
+                f.write(video.getbuffer())
+
+            st.subheader(video.name)
+
+            st.video(video)
+
+            size = round(video.size / (1024 * 1024), 2)
+
+            st.write(f"File Size : {size} MB")
