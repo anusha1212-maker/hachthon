@@ -1,0 +1,73 @@
+import streamlit as st
+
+st.set_page_config(
+    page_title="AI Movie Trailer Studio",
+    page_icon="🎬",
+    layout="wide"
+)
+
+st.title("🎬 AI Movie Trailer Studio")
+
+st.markdown("""
+Create professional cinematic movie trailers using Python and Streamlit.
+
+### Features
+- Upload Videos
+- Trim & Merge Clips
+- Add Images & Posters
+- AI Narration
+- Background Music
+- Trailer Effects
+- Subtitle Generation
+- Export HD & 4K Trailer
+""")
+
+menu = [
+    "🏠 Home",
+    "📹 Video Upload",
+    "✂ Scene Selection",
+    "🖼 Media Insertion",
+    "🎬 Cinematic Titles",
+    "🎙 AI Voice",
+    "🎵 Background Music",
+    "✨ Trailer Effects",
+    "💬 Subtitle Generator",
+    "🎞 Trailer Templates",
+    "📤 Export Trailer"
+]
+
+choice = st.sidebar.radio("Navigation", menu)
+
+if choice == "🏠 Home":
+    st.success("Welcome to AI Movie Trailer Studio!")
+    st.write("Select a module from the sidebar to begin.")
+
+elif choice == "📹 Video Upload":
+    st.info("Module 1 - Video Upload")
+
+elif choice == "✂ Scene Selection":
+    st.info("Module 2 - Scene Selection")
+
+elif choice == "🖼 Media Insertion":
+    st.info("Module 3 - Image & Media Insertion")
+
+elif choice == "🎬 Cinematic Titles":
+    st.info("Module 4 - Cinematic Text & Titles")
+
+elif choice == "🎙 AI Voice":
+    st.info("Module 5 - AI Voice Narration")
+
+elif choice == "🎵 Background Music":
+    st.info("Module 6 - Background Music & Sound Effects")
+
+elif choice == "✨ Trailer Effects":
+    st.info("Module 7 - Trailer Effects")
+
+elif choice == "💬 Subtitle Generator":
+    st.info("Module 8 - Subtitle Generator")
+
+elif choice == "🎞 Trailer Templates":
+    st.info("Module 9 - Trailer Templates")
+
+elif choice == "📤 Export Trailer":
+    st.info("Module 10 - Final Export")
